@@ -1,0 +1,46 @@
+<section id="blog-author"{{#if data.fields.coverImage}} class="has-cover"{{else}}{{#if webSite.coverImageUrl}} class="has-cover"{{/if}}{{/if}}>
+  <div class="inner">
+    <aside class="post-author">
+
+      {{#with data.entries.0.fields.author.fields}}
+        <figure class="post-author-avatar avatar">
+          {{#if profileImage}}
+            <img src="{{profileImage}}" alt="{{firstName}} {{lastName}}" />
+          {{/if}}
+        </figure>
+      {{/with}}
+
+      <div class="post-author-bio">
+
+        {{#with data.entries.0.fields.author.fields}}
+          <h2 class="post-author-name">{{firstName}} {{lastName}}</h2>
+          {{#if bio}}
+            <p class="post-author-about">{{bio}}</p>
+          {{/if}}
+        {{/with}}
+
+        <span class="post-author-stats"><i class="ic ic-pencil"></i> {{data.entries.length}} Posts</span>
+
+        {{#with data.entries.0.fields.author.fields}}
+          {{#if location}}
+            <span class="post-author-location"><i class="ic ic-location"></i> {{location}}</span>
+          {{/if}}
+
+          {{#if webSite}}
+            <span class="post-author-website"><i class="ic ic-link"></i> <a href="{{webSite}}">Website</a></span>
+          {{/if}}
+
+          {{#if twitter}}
+            <span class="post-author-twitter"><i class="ic ic-twitter"></i> <a target="_blank" href="https://twitter.com/{{twitter}}">Twitter</a></span>
+          {{/if}}
+
+          {{#if facebook}}
+            <span class="post-author-facebook"><i class="ic ic-facebook"></i> <a target="_blank" href="https://facebook.com/{{facebook}}">Facebook</a></span>
+          {{/if}}
+        {{/with}}
+
+      </div>
+    <div class="clear"></div>
+  </aside>
+</div>
+</section>

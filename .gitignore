@@ -1,0 +1,41 @@
+# exclude build and contents directories
+# build: contains the builded static website
+# contents: contains the files needed to configure
+# the Contentful queries and other aspects of the
+# build process
+build/
+contents/
+node_modules/
+
+# exclude the environment directories
+envs/
+
+# exclude Atom config files
+.ftpconfig
+.remote-sync.json
+
+# exclude files with the following extensions
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.7z
+*.
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.log
+*.sql
+*.sqlite
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

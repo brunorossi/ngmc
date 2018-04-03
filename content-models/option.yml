@@ -1,0 +1,32 @@
+# Option data type
+# data.fields.name
+# data.fields.value
+
+id: option
+priority: 0
+model:
+
+  name: Option
+  description: 'A configuration option'
+  displayField: name
+
+  fields:
+
+    - id: name
+      name: name
+      type: Symbol
+      localized: false
+      required: true
+      validations:
+      - unique: true
+      disabled: false
+      omitted: false
+
+    - id: value
+      name: value
+      type: Object
+      localized: false
+      required: true
+      validations: []
+      disabled: false
+      omitted: false

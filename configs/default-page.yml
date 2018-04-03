@@ -1,0 +1,11 @@
+contentType: page
+id: examplepage
+priority: 5
+description: An example page
+content:
+  slug:
+    en-US: default-page
+  title:
+    en-US: A default page
+  content:
+    en-US: The page content

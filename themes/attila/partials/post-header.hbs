@@ -1,0 +1,50 @@
+{{!
+Available Post fields
+-------------------------
+data.fields.title
+data.fields.excerpt
+data.fields.featuredImage
+data.fields.category
+data.fields.content
+data.fields.author
+data.fields.tags
+data.fields.published
+}}
+
+<div class="progress-container">
+  <span class="progress-bar"></span>
+</div>
+
+<header id="post-header"{{#if data.fields.featuredImage}} class="has-cover" {{/if}}>
+  <div class="inner">
+
+    <nav id="navigation">
+
+      {{#if webSite.logoUrl}}
+        <span class="blog-logo">
+          <a href="{{webSite.url}}"><img src="{{webSite.logoUrl}}" alt="Blog Logo" /></a>
+        </span>
+      {{else}}
+        <span id="home-button" class="nav-button">
+          <a class="home-button" href="{{webSite.url}}" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+        </span>
+      {{/if}}
+
+      {{#if webSite.showMenuButton}}
+        <span id="menu-button" class="nav-button">
+          <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+        </span>
+      {{/if}}
+
+    </nav>
+
+    <h1 class="post-title">{{data.fields.title}}</h1>
+
+    <span class="post-meta">{{data.fields.author.fields.nickName}} | <time datetime="{{data.sys.updatedAt}}">{{data.sys.updatedAt}}</time></span>
+
+    {{#if data.fields.featuredImage}}
+      <div class="post-cover cover" style="background-image: url('{{data.fields.featuredImage}}');"></div>
+    {{/if}}
+
+  </div>
+</header>

@@ -1,0 +1,25 @@
+contentType: post
+id: examplepost
+priority: 6
+description: An example post
+content:
+  slug:
+    en-US: mgnc-a-serverless-blog-at-no-cost
+  title:
+    en-US: MGNC a Serverless blog at no cost
+  excerpt:
+    en-US: How to construct a serverless DevOps ready blog with MetalSmith Github Netlify and Contentful
+  content:
+    en-US: The content
+  author:
+    en-US:
+      sys:
+        type: Link
+        linkType: Entry
+        id: brossi
+  tags:
+    en-US:
+      - sys:
+          type: Link
+          linkType: Entry
+          id: devops

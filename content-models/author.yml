@@ -1,0 +1,179 @@
+# Author data type
+# data.fields.nickName
+# data.fields.fistName
+# data.fields.lastName
+# data.fields.email
+# data.fields.twitter
+# data.fields.linkedin
+# data.fields.facebook
+# data.fields.skype
+# data.fields.webSite
+# data.fields.cv
+# data.fields.coverImage @todo
+# data.fields.profileImage @todo
+# data.fields.bio
+# data.fields.location
+# data.fields.published @todo
+
+id: author
+priority: 1
+model:
+
+  name: Author
+  description: 'An author involved in data publishing'
+  displayField: slug
+  fields:
+
+  - id: slug
+    name: slug
+    type: Symbol
+    localized: false
+    required: true
+    validations:
+    - unique: true
+    - size:
+        min: 1
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: nickName
+    name: nickName
+    type: Symbol
+    localized: false
+    required: true
+    validations:
+    - unique: true
+    disabled: false
+    omitted: false
+
+  - id: firstName
+    name: firstName
+    type: Symbol
+    localized: false
+    required: true
+    validations:
+    - size:
+        min: 1
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: lastName
+    name: lastName
+    type: Symbol
+    localized: false
+    required: true
+    validations:
+    - size:
+        min: 1
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: email
+    name: email
+    type: Symbol
+    localized: false
+    required: true
+    validations:
+    - regexp:
+        pattern: "^\\w[\\w.-]*@([\\w-]+\\.)+[\\w-]+$"
+    disabled: false
+    omitted: false
+
+  - id: twitter
+    name: twitter
+    type: Symbol
+    localized: false
+    required: false
+    validations:
+    - size:
+        min: 0
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: linkedin
+    name: linkedin
+    type: Symbol
+    localized: false
+    required: false
+    validations:
+    - size:
+        min: 0
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: facebook
+    name: facebook
+    type: Symbol
+    localized: false
+    required: false
+    validations:
+    - size:
+        min: 0
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: skype
+    name: skype
+    type: Symbol
+    localized: false
+    required: false
+    validations:
+    - size:
+        min: 0
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: website
+    name: website
+    type: Symbol
+    localized: false
+    required: false
+    validations:
+    - size:
+        min: 0
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: cv
+    name: cv
+    type: Symbol
+    localized: false
+    required: false
+    validations:
+    - size:
+        min: 0
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: location
+    name: location
+    type: Symbol
+    localized: false
+    required: false
+    validations:
+    - size:
+        min: 0
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: bio
+    name: bio
+    type: Text
+    localized: false
+    required: true
+    validations:
+    - size:
+        min: 1
+        max: 45000
+    disabled: false
+    omitted: false

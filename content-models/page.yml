@@ -1,0 +1,51 @@
+# Page data type
+# data.fields.title
+# data.fields.coverImage @todo
+# data.fields.content
+# data.fields.published @todo
+
+id: page
+priority: 4
+model:
+
+  name: Page
+  description: 'A page of the blog'
+  displayField: slug
+  fields:
+
+  - id: slug
+    name: slug
+    type: Symbol
+    localized: false
+    required: true
+    validations:
+    - unique: true
+    - size:
+        min: 1
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: title
+    name: title
+    type: Symbol
+    localized: false
+    required: true
+    validations:
+    - size:
+        min: 1
+        max: 255
+    disabled: false
+    omitted: false
+
+  - id: content
+    name: content
+    type: Text
+    localized: false
+    required: true
+    validations:
+    - size:
+        min: 1
+        max: 45000
+    disabled: false
+    omitted: false

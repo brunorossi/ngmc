@@ -1,0 +1,25 @@
+<div class="extra-pagination">
+	{{!pagination}}
+</div>
+
+{{#each data.entries}}
+
+<article class="post tag-general">
+	<div class="inner">
+
+		<header class="post-header">
+			<h2 class="post-title"><a href="{{_fileName}}">{{{fields.title}}}</a></h2>
+			<span class="post-meta">{{fields.author.fields.nickName}} in {{#each fields.tags}} {{fields.name}} {{/each}} | <time datetime="{{sys.updatedAt}}">{{sys.updatedAt}}</time></span>
+			<div class="clear"></div>
+		</header>
+
+		<section class="post-excerpt">
+			<p>{{fields.excerpt}}&hellip;</p>
+		</section>
+
+	</div>
+</article>
+
+{{/each}}
+
+{{!pagination}}

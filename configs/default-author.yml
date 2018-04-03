@@ -1,0 +1,31 @@
+contentType: author
+id: brossi
+priority: 4
+description: An example author
+content:
+  slug:
+    en-US: brossi
+  nickName:
+    en-US: brossi
+  firstName:
+    en-US: Bruno
+  lastName:
+    en-US: Rossi
+  email:
+    en-US: brunorossiweb@gmail.com
+  twitter:
+    en-US: ''
+  linkedin:
+    en-US: ''
+  facebook:
+    en-US: ''
+  skype:
+    en-US: ''
+  website:
+    en-US: ''
+  cv:
+    en-US: ''
+  bio:
+    en-US: I'am an AWS Solution Architect and a DevOps Engineer
+  location:
+    en-US: Pavia, Italy

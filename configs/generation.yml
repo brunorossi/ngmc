@@ -1,0 +1,63 @@
+contentType: option
+id: generation
+priority: 7
+description: The option to generate pages
+content:
+  name:
+    en-US: generation
+  value:
+    en-US:
+      postsByAuthor:
+        field: "{slug}.md"
+        use:
+          type: loop
+          on: author
+          asTitle: nickName
+          filter:
+            field: author
+            operator: match
+          orderedBy: -sys.createdAt
+        configuration:
+          layout: author.hbs
+          contentful:
+            content_type: post
+            entry_filename_pattern: /${fields.slug}
+            entry_template: author.hbs
+      postsByTag:
+        field: "{slug}.md"
+        use:
+          type: loop
+          on: tag
+          asTitle: name
+          filter:
+            field: tags
+            operator: in
+          orderedBy: -sys.createdAt
+        configuration:
+          layout: tag.hbs
+          contentful:
+            content_type: post
+            entry_filename_pattern: /${fields.slug}
+            entry_template: tag.hbs
+      post:
+        file: post.md
+        use:
+          type: simple
+        configuration:
+          title: Post
+          layout: index.hbs
+          contentful:
+            content_type: post
+            entry_filename_pattern: "${ fields.slug }"
+            entry_template: post.hbs
+      page:
+        file: page.md
+        use:
+          type: simple
+        configuration:
+          title: Page
+          layout: page.hbs
+          contentful:
+            content_type: page
+            entry_filename_pattern: "page/${ fields.slug }"
+            entry_template: page.hbs

@@ -1,0 +1,11 @@
+contentType: tag
+id: devops
+priority: 3
+description: An example tag
+content:
+  name:
+    en-US: devops
+  slug:
+    en-US: devops
+  description:
+    en-US: Contents related to DevOps methodologies

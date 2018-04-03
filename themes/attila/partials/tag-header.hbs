@@ -1,0 +1,61 @@
+{{!
+Available Tag fields
+-------------------------
+data.fields.name
+data.fields.featuredImage
+data.fields.description
+data.fields.published
+}}
+<!-- class="has-cover" -->
+<header id="blog-header">
+	<div class="inner">
+
+		<nav id="navigation">
+
+			{{#if webSite.logoUrl}}
+				<span class="blog-logo">
+					<a href="{{webSite.url}}"><img src="{{webSite.logoUrl}}" alt="Blog Logo" /></a>
+				</span>
+			{{else}}
+				<span id="home-button" class="nav-button">
+					<a class="home-button" href="{{webSite.url}}" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+				</span>
+			{{/if}}
+
+			{{#if webSite.showMenuButton}}
+				<span id="menu-button" class="nav-button">
+					<a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+				</span>
+			{{/if}}
+
+		</nav>
+
+		{{#each data.entries.0.fields.tags}}
+			{{#contains ../_fileName fields.name}}
+
+				<h1 class="blog-name">{{fields.name}}</h1>
+
+				<!--
+				<span class="post-meta">{{../data.entries.length}} Posts</span>
+				-->
+				
+				<span class="blog-description">
+					{{#if fields.description}}
+						{{fields.description}}
+					{{/if}}
+				</span>
+
+				{{#if fields.featuredImage}}
+					<div class="blog-cover cover" style="background-image: url('{{fields.featuredImage}}');"></div>
+				{{else}}
+					{{#if webSite.coverImageUrl}}
+						<div class="blog-cover cover" style="background-image: url('{{webSite.coverImageUrl}}');"></div>
+					{{/if}}
+				{{/if}}
+
+			{{/contains}}
+		{{/each}}
+
+	</div>
+
+</header>

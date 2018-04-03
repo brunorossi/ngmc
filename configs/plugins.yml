@@ -1,0 +1,45 @@
+contentType: option
+id: plugins
+priority: 1
+description: The plugins option to configure the Metalsmith plugins
+content:
+  name:
+    en-US: plugins
+  value:
+    en-US:
+    - package: metalsmith-markdown
+      enabled: true
+
+    - package: metalsmith-permalinks
+      configuration:
+        relative: false
+      enabled: true
+
+    - package: contentful-metalsmith
+      configuration:
+        access_token: "{contentfulDeliveryToken}"
+        space_id: "{contentfulSpaceId}"
+      enabled: true
+
+    - package: metalsmith-assets
+      configuration:
+        source: ./themes/{themeDir}/assets
+        destination: ./assets
+      enabled: true
+
+    - package: metalsmith-discover-partials
+      configuration:
+        directory: ./themes/{themeDir}/partials
+      enabled: true
+
+    - package: metalsmith-register-helpers
+      configuration:
+        directory: ./node_modules/handlebars-helpers/lib
+      enabled: true
+
+    - package: metalsmith-layouts
+      configuration:
+        directory: ./themes/{themeDir}
+        engineOptions:
+          cache: false
+      enabled: true

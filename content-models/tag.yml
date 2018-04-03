@@ -1,0 +1,51 @@
+# Tag data type
+# data.fields.name
+# data.fields.featuredImage @todo
+# data.fields.description
+# data.fields.published @todo
+
+id: tag
+priority: 2
+model:
+
+  name: Tag
+  description: 'The tag needed to categorize a post'
+  displayField: slug
+  fields:
+
+  - id: slug
+    name: slug
+    type: Symbol
+    localized: false
+    required: true
+    validations:
+    - unique: true
+    - size:
+        min: 1
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: name
+    name: name
+    type: Symbol
+    localized: false
+    required: true
+    validations:
+    - size:
+        min: 1
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: description
+    name: description
+    type: Text
+    localized: false
+    required: false
+    validations:
+    - size:
+        min: 1
+        max: 2000
+    disabled: false
+    omitted: false

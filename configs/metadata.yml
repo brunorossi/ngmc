@@ -1,0 +1,48 @@
+contentType: option
+id: metadata
+priority: 2
+description: The metadata option
+content:
+  name:
+    en-US: metadata
+  value:
+    en-US:
+      theme:
+        name: Attila
+        description: A free theme for the Ghost web blog platform
+        url: https://github.com/zutrinken/attila
+        credits:
+          - url: https://github.com/zutrinken
+            name: Peter Amende
+        dir: '{themeDir}'
+      webSite:
+        title: Nice The DevOps
+        description: DevOps methodologies, mindset and tools
+        keywords: DevOps, DevOps methodologies, continous integration, automation, infrastructure as a code, cloud, AWS, GCP, Azure
+        author: Bruno Rossi <brunorossiweb@gmail.com>
+        url: http://www.nicethedevops.org
+        favIcon: ''
+        logoUrl: ''
+        showMenuButton: true
+        styles:
+          bodyClass: ''
+        platform:
+          name: MGNC
+          url: http://github.com
+        header:
+          coverImageUrl: ''
+          title: ''
+      googleAnalytics:
+        code: ''
+      openGraph:
+        type: website
+        title: Nice The DevOps
+        siteName: Site Name
+        description: DevOps methodologies, mindset and tools
+        url: http://www.nicethedevops.org
+        image: ''
+      twitter:
+        card: summary
+        title: Nice The DevOps
+        description: DevOps methodologies, mindset and tools
+        image: ''

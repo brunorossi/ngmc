@@ -1,0 +1,97 @@
+# Post data type
+# data.fields.slug
+# data.fields.title
+# data.fields.excerpt
+# data.fields.featuredImage @todo
+# data.fields.content
+# data.fields.author
+# data.fields.tags
+# data.fields.published @todo
+
+id: post
+priority: 3
+model:
+
+  name: Post
+  description: 'An article of the blog'
+  displayField: slug
+  fields:
+
+  - id: slug
+    name: slug
+    type: Symbol
+    localized: false
+    required: true
+    validations:
+    - unique: true
+    - size:
+        min: 1
+        max: 150
+    disabled: false
+    omitted: false
+
+  - id: title
+    name: title
+    type: Symbol
+    localized: false
+    required: true
+    validations:
+    - size:
+        min: 1
+        max: 255
+    disabled: false
+    omitted: false
+
+  - id: excerpt
+    name: excerpt
+    type: Text
+    localized: false
+    required: false
+    validations:
+    - size:
+        min: 1
+        max: 1000
+    disabled: false
+    omitted: false
+
+  - id: content
+    name: content
+    type: Text
+    localized: false
+    required: true
+    validations:
+    - size:
+        min: 1
+        max: 45000
+    disabled: false
+    omitted: false
+
+  - id: author
+    name: author
+    type: Link
+    localized: false
+    required: true
+    validations:
+    - linkContentType:
+      - author
+    disabled: false
+    omitted: false
+    linkType: Entry
+
+  - id: tags
+    name: tags
+    type: Array
+    localized: false
+    required: true
+    validations:
+    - size:
+        min: 1
+        max: 20
+    disabled: false
+    omitted: false
+    items:
+      type: Link
+      validations:
+      - linkContentType:
+        - tag
+      linkType: Entry

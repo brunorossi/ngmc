@@ -1,0 +1,31 @@
+<header id="blog-header"{{#if webSite.coverImageUrl}} class="has-cover"{{/if}}>
+  <div class="inner">
+
+    <nav id="navigation">
+
+      {{#if webSite.logoUrl}}
+        <span class="blog-logo">
+          <a href="{{webSite.url}}"><img src="{{webSite.logoUrl}}" alt="Blog Logo" /></a>
+        </span>
+      {{/if}}
+
+      {{#if webSite.showMenuButton}}
+        <span id="menu-button" class="nav-button">
+          <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+        </span>
+      {{/if}}
+
+    </nav>
+
+    <h1 class="blog-name"><a href="{{webSite.url}}">{{webSite.title}}</a></h1>
+
+    {{#if webSite.description}}
+      <span class="blog-description">{{webSite.description}}</span>
+    {{/if}}
+
+    {{#if webSite.coverImageUrl}}
+      <div class="blog-cover cover" style="background-image: url('{{webSite.coverImageUrl}}');"></div>
+    {{/if}}
+
+  </div>
+</header>

@@ -1,0 +1,53 @@
+{{!
+Available Author fields
+-------------------------
+data.fields.nickName
+data.fields.fistName
+data.fields.lastName
+data.fields.email
+data.fields.twitter
+data.fields.linkedin
+data.fields.facebook
+data.fields.skype
+data.fields.webSite
+data.fields.cv
+data.fields.coverImage
+data.fields.profileImage
+data.fields.bio
+data.fields.location
+data.fields.published
+}}
+
+<header id="blog-header"{{#if data.fields.coverImage}} class="has-cover"{{else}}{{#if webSite.coverImageUrl}} class="has-cover"{{/if}}{{/if}}>
+  <div class="inner">
+
+    <nav id="navigation">
+
+      {{#if webSite.logoUrl}}
+        <span class="blog-logo">
+          <a href="{{webSite.url}}"><img src="{{webSite.logoUrl}}" alt="Blog Logo" /></a>
+        </span>
+      {{else}}
+        <span id="home-button" class="nav-button">
+          <a class="home-button" href="{{webSite.url}}" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+        </span>
+      {{/if}}
+
+      {{#if webSite.showMenuButton}}
+        <span id="menu-button" class="nav-button">
+          <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+        </span>
+      {{/if}}
+
+    </nav>
+
+    {{#if data.fields.coverImage}}
+      <div class="blog-cover cover" style="background-image: url('{{data.fields.coverImage}}');"></div>
+    {{else}}
+      {{#if webSite.coverImageUrl}}
+        <div class="blog-cover cover" style="background-image: url('{{webSite.coverImageUrl}}');"></div>
+      {{/if}}
+    {{/if}}
+
+  </div>
+</header>

@@ -1,0 +1,12 @@
+contentType: option
+id: settings
+priority: 0
+description: The general Metalsmith settings
+content:
+  name:
+    en-US: settings
+  value:
+    en-US:
+      source: ./contents
+      destination: ./build
+      clean: true
