@@ -21,8 +21,6 @@ content:
           layout: author.hbs
           contentful:
             content_type: post
-            entry_filename_pattern: /${fields.slug}
-            entry_template: author.hbs
       postsByTag:
         field: "{slug}.md"
         use:
@@ -37,8 +35,6 @@ content:
           layout: tag.hbs
           contentful:
             content_type: post
-            entry_filename_pattern: /${fields.slug}
-            entry_template: tag.hbs
       post:
         file: post.md
         use:
