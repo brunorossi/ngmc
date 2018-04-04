@@ -8,6 +8,7 @@
     "load": "node create-content-models.js",
     "configure": "node load-configs.js",
     "generate": "node create-content-queries.js",
+    "generate-content-hook": "node create-content-web-hook.js",
     "build": "node build.js",
     "deploy-on-local-web-server": "node local-web-server-deploy.js"
   },
