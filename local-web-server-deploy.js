@@ -40,7 +40,6 @@ const locale = process.env.CONTENTFUL_LOCALE;
 console.log('Contentful Access Token is set to: ' + accessToken);
 console.log('Contentful Space Id is set to: ' + spaceId);
 console.log('Contentful Locale is set to: ' + locale);
-console.log('Local Web Server Folder is set to: ' + webServerFolder + "\n\n");
 
 const client = contentful.createClient({ accessToken: accessToken });
 
@@ -50,7 +49,7 @@ function deploy(buildFolder, webServerFolder) {
     execSync('rm -Rf ' + webServerFolder + '/*');
   } catch (error) {
       console.log("I'm not able to remove files into the " + webServerFolder + " directory");
-      console.log(error);      
+      console.log(error);
       process.exit(8);
   }
 
@@ -82,7 +81,7 @@ client.getSpace(spaceId)
     console.log("I'm retrieving the settings fields:");
     console.log(settingsEntry.fields);
     console.log("\n");
-    
+
     space.getEntry('deploy')
     .then((deployEntry) => {
 
@@ -94,9 +93,9 @@ client.getSpace(spaceId)
       const buildFolder = settingsEntry.fields.value[locale].destination;
       const webServerFolder = deployEntry.fields.value[locale].localWebServer.dir;
       deploy(buildFolder, webServerFolder);
-      
+
     }).catch((error) => { console.log(error); process.exit(11); });
-  
+
   }).catch((error) => { console.log(error); process.exit(11); });
-  
+
 }).catch((error) => { console.log(error); process.exit(12); });

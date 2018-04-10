@@ -4,9 +4,9 @@ priority: 6
 description: An example post
 content:
   slug:
-    en-US: mgnc-a-serverless-blog-at-no-cost
+    en-US: ngmc-a-serverless-blog-at-no-cost
   title:
-    en-US: MGNC
+    en-US: NGMC
   excerpt:
     en-US: A serverless, continous delivery first, near to 0$ costs, extensible micro CMS generating static contents
   content:
