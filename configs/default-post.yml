@@ -6,11 +6,11 @@ content:
   slug:
     en-US: mgnc-a-serverless-blog-at-no-cost
   title:
-    en-US: MGNC a Serverless blog at no cost
+    en-US: MGNC
   excerpt:
-    en-US: How to construct a serverless DevOps ready blog with MetalSmith Github Netlify and Contentful
+    en-US: A serverless, continous delivery first, near to 0$ costs, extensible micro CMS generating static contents
   content:
-    en-US: The content
+    en-US: Place your content here!
   author:
     en-US:
       sys:

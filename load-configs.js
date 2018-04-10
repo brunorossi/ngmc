@@ -56,9 +56,16 @@ if (!process.env.CONTENTFUL_API_KEY_NAME_PREFIX) {
 }
 const apiKeyName = process.env.CONTENTFUL_API_KEY_NAME_PREFIX + suffix;
 
+if (!process.env.CONTENTFUL_LOCALE) {
+  console.log('Please, set CONTENTFUL_LOCALE variable into the file: ' + dotEnvFilePath);
+  process.exit(10);
+}
+const locale = process.env.CONTENTFUL_LOCALE;
+
 console.log('Contentful Access Token is set to: ' + accessToken);
 console.log('Contentful Space Id is set to: ' + spaceId);
 console.log('Theme Directory Name is set to: ' + themeDir);
+console.log('The Contentful Locale is set to: ' + locale);
 console.log('Source Configuration Directory is set to: ' + configsDir);
 console.log('Contentful Api Key ID is set to: ' + apiKeyId);
 console.log('Contentful Api Key Name is set to: ' + apiKeyName + "\n\n");
@@ -83,6 +90,8 @@ client.getSpace(spaceId)
                      .replace(/\{themeDir\}/g, themeDir)
                      .replace(/\{contentfulSpaceId\}/g, spaceId)
                      .replace(/\{contentfulDeliveryToken\}/g, apiKey.accessToken)
+                     .replace(/\{contentfulAccessToken\}/g, accessToken)
+                     .replace(/\{contentfulLocale\}/g, locale)
       }
     }
 
@@ -95,10 +104,8 @@ client.getSpace(spaceId)
         console.log("ID: " + contentConfiguration.id);
         console.log("Type: " + contentConfiguration.type);
         console.log("Content: " + contentConfiguration.content + "\n");
-      })
-      .catch((error) => { console.log(error); process.exit(10); });
+      }).catch((error) => { console.log(error); process.exit(11); });
     }
 
-  }).catch((error) => { console.log(error); process.exit(11); });
-
-}).catch((error) => { console.log(error); process.exit(12); });
+  }).catch((error) => { console.log(error); process.exit(12); });
+}).catch((error) => { console.log(error); process.exit(13); });

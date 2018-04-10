@@ -1,4 +1,4 @@
-const contentful = require('contentful-management')
+const contentful = require('contentful-management');
 const fs = require('fs');
 const yaml = require('js-yaml');
 const env = require('dotenv');
@@ -46,7 +46,6 @@ if (-1 !== envFileContent.indexOf('CONTENTFUL_SPACE_ID')) {
 console.log('Contentful Access Token is set to: ' + accessToken);
 console.log('Contentful Space Name is set to: ' + spaceName);
 console.log('The source models directory is set to: ' + modelsDir + "\n\n");
-
 console.log("I'm creating the space: " + spaceName);
 
 const client = contentful.createClient({ accessToken: accessToken });
@@ -76,6 +75,5 @@ client.createSpace({ name: spaceName })
     .then((contentType) => console.log('- ' + contentType.sys.id))
     .catch(console.error);
   }
-
 })
 .catch((error) => { console.log(error); process.exit(8); });

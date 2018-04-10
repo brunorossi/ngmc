@@ -2,7 +2,7 @@ const contentful = require('contentful-management')
 const fs = require('fs');
 const env = require('dotenv');
 const sys = require('sys')
-const exec = require('child_process').exec;
+const execSync = require('child_process').execSync;
 
 if (!process.env.NODE_ENV) {
   console.log('Please, set the NODE_ENV variable');
@@ -37,12 +37,6 @@ if (!process.env.CONTENTFUL_LOCALE) {
 }
 const locale = process.env.CONTENTFUL_LOCALE;
 
-if (!process.env.LOCAL_WEB_SERVER_FOLDER) {
-  console.log('Please, set the LOCAL_WEB_SERVER_FOLDER variable into the file: ' + dotEnvFilePath);
-  process.exit(7);
-}
-const webServerFolder = process.env.LOCAL_WEB_SERVER_FOLDER;
-
 console.log('Contentful Access Token is set to: ' + accessToken);
 console.log('Contentful Space Id is set to: ' + spaceId);
 console.log('Contentful Locale is set to: ' + locale);
@@ -51,33 +45,32 @@ console.log('Local Web Server Folder is set to: ' + webServerFolder + "\n\n");
 const client = contentful.createClient({ accessToken: accessToken });
 
 function deploy(buildFolder, webServerFolder) {
-  exec('rm -Rf ' + webServerFolder + '/*', (error, stdout, stderr) => {
-    if (error) {
+
+  try {
+    execSync('rm -Rf ' + webServerFolder + '/*');
+  } catch (error) {
       console.log("I'm not able to remove files into the " + webServerFolder + " directory");
+      console.log(error);      
       process.exit(8);
+  }
+
+  if (fs.existsSync(buildFolder + '/post/index.html')) {
+    try {
+        execSync('mv ' + buildFolder + '/post/index.html ' + buildFolder + '/index.html');
+    } catch (error) {
+        console.log("I'm not able to move the index.html file");
+        console.log(error);
+        process.exit(9);
     }
-    if (fs.existsSync(buildFolder + '/post/index.html')) {
-      exec('mv ' + buildFolder + '/post/index.html ' + buildFolder + '/index.html', (error, stdout, stderr) => {
-        if (error) {
-          console.log("I'm not able to move the index.html file");
-          process.exit(9);
-        }
-        exec('\cp -Rf ' + buildFolder + '/* ' + webServerFolder + '/.', (error, stdout, stderr) => {
-          if (error) {
-            console.log("I'm not able to copy the builded files into the web server folder directory");
-            process.exit(10);
-          }
-        });
-      });
-    } else {
-      exec('\cp -Rf ' + buildFolder + '/* ' + webServerFolder + '/.', (error, stdout, stderr) => {
-        if (error) {
-          console.log("I'm not able to copy the builded files into the web server folder directory");
-          process.exit(11);
-        }
-      });
-    }
-  });
+  }
+
+  try {
+     execSync('\cp -Rf ' + buildFolder + '/* ' + webServerFolder + '/.');
+  } catch (error) {
+     console.log("I'm not able to copy the built files into the web server folder directory");
+     console.log(error);
+     process.exit(10);
+  }
 }
 
 client.getSpace(spaceId)
@@ -89,10 +82,21 @@ client.getSpace(spaceId)
     console.log("I'm retrieving the settings fields:");
     console.log(settingsEntry.fields);
     console.log("\n");
+    
+    space.getEntry('deploy')
+    .then((deployEntry) => {
 
-    console.log("I'm deploying on local web server");
-    const buildFolder = settingsEntry.fields.value[locale].destination;
-    deploy(buildFolder, webServerFolder);
+      console.log("I'm retrieving the deploy fields:");
+      console.log(deployEntry.fields);
+      console.log("\n");
 
-  }).catch(console.error);
-}).catch(console.error);
+      console.log("I'm deploying on local web server");
+      const buildFolder = settingsEntry.fields.value[locale].destination;
+      const webServerFolder = deployEntry.fields.value[locale].localWebServer.dir;
+      deploy(buildFolder, webServerFolder);
+      
+    }).catch((error) => { console.log(error); process.exit(11); });
+  
+  }).catch((error) => { console.log(error); process.exit(11); });
+  
+}).catch((error) => { console.log(error); process.exit(12); });

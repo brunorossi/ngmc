@@ -90,7 +90,7 @@ client.getSpace(spaceId)
     space.getEntry('metadata')
     .then((metadataEntry) => {
 
-      console.log("I'm retrieving the metadata fields:")
+      console.log("I'm retrieving the meta data fields:")
       console.log(metadataEntry.fields);
       console.log("\n");
       const metadata = metadataEntry.fields.value[locale];
@@ -99,21 +99,21 @@ client.getSpace(spaceId)
       .then((pluginsEntry) => {
 
         const plugins = pluginsEntry.fields.value[locale];
- 
+
         if (fs.existsSync(settings.destination)) {
           console.log("I'm removing the previous destination directory: " + settings.destination + "\n");
           remove.removeSync(settings.destination);
-        }    
-        
+        }
+
         console.log("I'm creating the destination directory: " + settings.destination + "\n");
         fs.mkdirSync(settings.destination);
-        
+
         console.log("I'm starting metalsmith with the following settings");
         console.log("The __dirname is: " + __dirname);
         console.log("Source: " + settings.source);
         console.log("Destination: " + settings.destination);
         console.log("\n");
-        
+
         const metalSmith = Metalsmith(__dirname)
                            .metadata(metadata)
                            .source(settings.source)
@@ -124,7 +124,7 @@ client.getSpace(spaceId)
           let plugin = plugins[i];
           instance = require(plugin.package);
 
-          console.log("I'm adding the following plugin to Metalsmith:")
+          console.log("I'm adding the following feature to Metalsmith:")
           console.log(plugin.package);
           console.log("with the following configurations:")
           console.log(plugin.configuration);
@@ -142,7 +142,7 @@ client.getSpace(spaceId)
             console.log(error);
             process.exit(7);
           } else {
-            console.log("The web site has been correctly builded!");
+            console.log("The web site has been correctly built!");
             console.log("\n\n")
           }
         });
@@ -154,4 +154,3 @@ client.getSpace(spaceId)
   }).catch((error) => { console.log(error); process.exit(10); });
 
 }).catch((error) => { console.log(error); process.exit(11); });
-

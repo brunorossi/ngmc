@@ -59,7 +59,6 @@ if ('env' === mode) {
   if (!process.env.CONTENTFUL_SPACE_ID) {
     console.log('Please, set the CONTENTFUL_SPACE_ID variable into the file: ' + dotEnvFilePath);
     process.exit(5);
-    spaceId = process.env.CONTENTFUL_SPACE_ID;
   }
   spaceId = process.env.CONTENTFUL_SPACE_ID;
 
@@ -89,12 +88,12 @@ client.getSpace(spaceId)
     console.log("\n\n");
 
     const sourceDir = settingsEntry.fields.value[locale].source;
-    
+
     if (fs.existsSync(sourceDir)) {
       console.log("I'm removing the previous source directory: " + sourceDir);
       remove.removeSync(sourceDir);
-    }    
-    
+    }
+
     console.log("I'm creating the source directory: " + sourceDir);
     fs.mkdirSync(sourceDir);
 
@@ -105,7 +104,7 @@ client.getSpace(spaceId)
 
           let settings = generationEntry.fields.value[locale][configKey];
 
-          if ('simple' === settings.use.type) {              
+          if ('simple' === settings.use.type) {
             let yamlConfiguration = "---" + "\n" + yaml.safeDump(settings.configuration) + "---";
             let fileName = sourceDir + '/' + settings.file;
             fs.writeFileSync(fileName, yamlConfiguration);
@@ -152,7 +151,5 @@ client.getSpace(spaceId)
           console.log("\n");
 
     }).catch((error) => { console.log(error); process.exit(7); });
-    
   }).catch((error) => { console.log(error); process.exit(8); });
-
 }).catch((error) => { console.log(error); process.exit(9); });

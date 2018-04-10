@@ -16,19 +16,19 @@ content:
             name: Peter Amende
         dir: '{themeDir}'
       webSite:
-        title: Nice The DevOps
-        description: DevOps methodologies, mindset and tools
-        keywords: DevOps, DevOps methodologies, continous integration, automation, infrastructure as a code, cloud, AWS, GCP, Azure
+        title: NGMC
+        description: A serverless, continous delivery first, near to 0$ costs, extensible micro CMS generating static contents
+        keywords: Netlify, Github, Metalsmith, Contentful, Serverless, Continous Delivery, 0$
         author: Bruno Rossi <brunorossiweb@gmail.com>
-        url: http://www.nicethedevops.org
+        url: http://ngmc.netlify.com
         favIcon: ''
         logoUrl: ''
         showMenuButton: true
         styles:
           bodyClass: ''
         platform:
-          name: MGNC
-          url: http://github.com
+          name: NGMC
+          url: https://github.com/brunorossi/ngmc
         header:
           coverImageUrl: ''
           title: ''
@@ -36,13 +36,13 @@ content:
         code: ''
       openGraph:
         type: website
-        title: Nice The DevOps
-        siteName: Site Name
-        description: DevOps methodologies, mindset and tools
-        url: http://www.nicethedevops.org
+        title: NGMC
+        siteName: NGMC
+        description: A serverless, continous delivery first, near to 0$ costs, extensible micro CMS generating static contents
+        url: http://ngmc.netlify.com
         image: ''
       twitter:
         card: summary
-        title: Nice The DevOps
-        description: DevOps methodologies, mindset and tools
+        title: NGMC
+        description: A serverless, continous delivery first, near to 0$ costs, extensible micro CMS generating static contents
         image: ''

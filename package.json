@@ -1,20 +1,24 @@
 {
-  "name": "NgMc",
+  "name": "NGMC",
   "version": "0.0.1",
-  "description": "A CI addict static serverless blog platform!",
+  "description": "A serverless, continous delivery first, near to 0$ costs, extensible micro CMS generating static contents",
   "main": "build.js",
   "scripts": {
     "preinstall": "npm install -g netlify-cli",
     "load": "node create-content-models.js",
     "configure": "node load-configs.js",
     "generate": "node create-content-queries.js",
-    "generate-content-hook": "node create-content-web-hook.js",
     "build": "node build.js",
+    "deploy": "node create-website.js",
     "deploy-on-local-web-server": "node local-web-server-deploy.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brunorossi/ngmc.git"
   },
   "keywords": [ "serverless", "blog", "continous integration", "Metalsmith", "Netlify", "Contentful", "Github" ],
   "author": "Bruno Rossi <brunorossiweb@gmail.com>",
-  "license": "ISC",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "bootstrap": "^4.0.0",
     "browser-sync": "^2.23.6",
@@ -22,7 +26,7 @@
     "handlebars-helper-asset": "^0.1.0",
     "handlebars-helpers": "^0.10.0",
     "jquery": "^3.3.1",
-    "contentful-management": "4.2.2",    
+    "contentful-management": "4.2.2",
     "jstransformer-handlebars": "^1.1.0",
     "js-yaml": "3.11.0",
     "metalsmith": "^2.3.0",
@@ -46,6 +50,7 @@
     "contentful-metalsmith": "0.11.0",
     "remove": "0.1.5",
     "dotenv": "5.0.1",
-    "minimist": "1.2.0"
+    "minimist": "1.2.0",
+    "request": "2.85.0"
   }
 }
