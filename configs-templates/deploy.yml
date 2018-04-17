@@ -12,7 +12,7 @@ content:
       contentful:
         webHook:
           name: netlify
-          id: ngmc
+          id: {netlifySiteId}
       netlify:
         buildHook:
           branch: master
