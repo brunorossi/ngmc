@@ -18,7 +18,7 @@ content:
           branch: master
           title: contentful
         site:
-          name: ngmc
+          name: {netlifySiteId}
           force_ssl: false
           notification_email: {email}
           plan: nf_team_dev
