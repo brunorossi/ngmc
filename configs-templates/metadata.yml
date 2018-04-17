@@ -1,0 +1,48 @@
+contentType: option
+id: metadata
+priority: 2
+description: The metadata option
+content:
+  name:
+    en-US: metadata
+  value:
+    en-US:
+      theme:
+        name: Attila
+        description: A free theme for the Ghost web blog platform
+        url: https://github.com/zutrinken/attila
+        credits:
+          - url: https://github.com/zutrinken
+            name: Peter Amende
+        dir: {themeDir}
+      webSite:
+        title: {webSiteTitle}
+        description: {webSiteDescription}
+        keywords: {webSiteKeywords}
+        author: {webSiteAuthor}
+        url: {webSiteUrl}
+        favIcon: ''
+        logoUrl: ''
+        showMenuButton: true
+        styles:
+          bodyClass: ''
+        platform:
+          name: NGMC
+          url: https://github.com/brunorossi/ngmc
+        header:
+          coverImageUrl: ''
+          title: ''
+      googleAnalytics:
+        code: ''
+      openGraph:
+        type: website
+        title: {webSiteTitle}
+        siteName: {webSiteTitle}
+        description: {webSiteDescription}
+        url: {webSiteUrl}
+        image: ''
+      twitter:
+        card: summary
+        title: {webSiteTitle}
+        description: {webSiteDescription}
+        image: ''

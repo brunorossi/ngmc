@@ -1,0 +1,47 @@
+contentType: option
+id: deploy
+priority: 8
+description: The deploy settings
+content:
+  name:
+    en-US: deploy
+  value:
+    en-US:
+      localWebServer:
+        dir: {localWebServerDeployFolder}
+      contentful:
+        webHook:
+          name: netlify
+          id: ngmc
+      netlify:
+        buildHook:
+          branch: master
+          title: contentful
+        site:
+          name: ngmc
+          force_ssl: false
+          notification_email: {email}
+          plan: nf_team_dev
+          processing_settings:
+            css:
+              bundle: true
+              minify: true
+            html:
+              pretty_urls: false
+            images:
+              optimize: true
+            js:
+              bundle: true
+              minify: true
+            skip: false
+          repo:
+            cmd: npm run generate -- --accessToken={contentfulAccessToken} --spaceId={contentfulSpaceId} --locale={contentfulLocale} && npm run build -- --accessToken={contentfulAccessToken} --spaceId={contentfulSpaceId} --locale={contentfulLocale} && mv ./build/post/index.html ./build/index.html
+            dir: build/
+            allowed_branches:
+            - master
+            private_logs: true
+            provider: github
+            public_repo: true
+            repo_branch: master
+            repo_path: {gitHubRepoPath}
+            repo_url: {gitHubRepoUrl}
