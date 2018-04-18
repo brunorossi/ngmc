@@ -61,79 +61,95 @@ client.getSpace(spaceId)
     const createWebSiteUrl = baseUrl
                              + "/sites/?access_token="
                              + netlifyAccessToken;
-
-    console.log("The deploy Netlify Site settings are:");
-    console.log(deploySettings.netlify.site);
-    console.log("\n");
-
+    
+    const deployKeyUrl = baseUrl
+                         + "/deploy_keys/?access_token="
+                         + netlifyAccessToken;
+    
     request({
-      url: createWebSiteUrl,
+      url: deployKeyUrl,
       method: "POST",
-      json: true,
-      body: deploySettings.netlify.site
-    }, function (error, response, body) {
+      json: true
+    }, function (error, response, deployKeyResponse) {
 
-      console.log("I'm creating the site resource on Netlify");
-      console.log("The response body is:");
-      console.log(body);
-      console.log("\n");
+	console.log("The deploy Key is:");
+    	console.log(deployKeyResponse);
+    	console.log("\n");
+	
+	deploySettings.netlify.site.repo.deploy_key_id = deployKeyResponse.id;
 
-      if (error)  {
-        console.log(error);
-        process.exit(8);
-      }
+	console.log("The deploy Netlify Site settings are:");
+    	console.log(deploySettings.netlify.site);
+    	console.log("\n");
 
-      const createWebHookRequestBody = {
-        site_id: body.site_id,
-        branch: deploySettings.netlify.buildHook.branch,
-        title: deploySettings.netlify.buildHook.title
-      };
+    	request({
+      	    url: createWebSiteUrl,
+            method: "POST",
+            json: true,
+            body: deploySettings.netlify.site
+    	}, function (error, response, body) {
 
-      const createWebHookUrl = baseUrl
-                + "/sites/"
-                + body.site_id
-                + "/build_hooks?access_token="
-                + netlifyAccessToken;
-
-      console.log("The deploy Netlify Build Hook settings are:");
-      console.log(createWebHookRequestBody);
-      console.log("\n");
-
-      request({
-        url: createWebHookUrl,
-        method: "POST",
-        json: true,
-        body: createWebHookRequestBody
-      }, function (error, response, body){
-
-        console.log("I'm creating the build hook resource on Netlify");
+        console.log("I'm creating the site resource on Netlify");
         console.log("The response body is:");
         console.log(body);
-        console.log("\n\n");
+        console.log("\n");
 
         if (error)  {
           console.log(error);
-          process.exit(9);
+          process.exit(8);
         }
 
-        console.log("I'm creating the Contentful web hook");
-        console.log("The Contentful Web Hook Name is: " + deploySettings.contentful.webHook.name);
-        console.log("The Contentful Web Hook Id is: " + deploySettings.contentful.webHook.id);
+        const createWebHookRequestBody = {
+          site_id: body.site_id,
+          branch: deploySettings.netlify.buildHook.branch,
+          title: deploySettings.netlify.buildHook.title
+        };
 
-        const options = {
-          name: deploySettings.contentful.webHook.name,
-          url: body.url,
-          topics: [
-            '*.publish',
-            '*.unpublish'
-          ]};
+        const createWebHookUrl = baseUrl
+              		         + "/sites/"
+                                 + body.site_id
+                                 + "/build_hooks?access_token="
+                                 + netlifyAccessToken;
 
-        space.createWebhookWithId(deploySettings.contentful.webHook.id, options)
+        console.log("The deploy Netlify Build Hook settings are:");
+        console.log(createWebHookRequestBody);
+        console.log("\n");
+
+        request({
+          url: createWebHookUrl,
+          method: "POST",
+          json: true,
+          body: createWebHookRequestBody
+        }, function (error, response, body){
+
+          console.log("I'm creating the build hook resource on Netlify");
+          console.log("The response body is:");
+          console.log(body);
+          console.log("\n\n");
+
+          if (error)  {
+            console.log(error);
+            process.exit(9);
+          }
+
+          console.log("I'm creating the Contentful web hook");
+          console.log("The Contentful Web Hook Name is: " + deploySettings.contentful.webHook.name);
+          console.log("The Contentful Web Hook Id is: " + deploySettings.contentful.webHook.id);
+
+          const options = {
+            name: deploySettings.contentful.webHook.name,
+            url: body.url,
+            topics: [
+              '*.publish',
+              '*.unpublish'
+            ]};
+
+          space.createWebhookWithId(deploySettings.contentful.webHook.id, options)
              .then((webhook) => {
                 console.log("The Contentful web hook has been successfully created");
               }).catch((error) => { console.log(error); process.exit(9); });
+        });
       });
     });
-
   }).catch((error) => { console.log(error); process.exit(10); });
 }).catch((error) => { console.log(error); process.exit(11); });
