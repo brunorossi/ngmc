@@ -74,8 +74,14 @@ client.getSpace(spaceId)
 
 	console.log("The deploy Key is:");
     	console.log(deployKeyResponse);
+	console.log("The content is:");
+	console.log(deployKeyResponse.public_key);
+	console.log("The key id is:");
+	console.log(deployKeyResponse.id);
     	console.log("\n");
-	
+
+ 	fs.writeFileSync("deploy-key.tmp", deployKeyResponse.public_key);
+		
 	deploySettings.netlify.site.repo.deploy_key_id = deployKeyResponse.id;
 
 	console.log("The deploy Netlify Site settings are:");
